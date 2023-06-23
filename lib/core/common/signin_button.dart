@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_twitter/core/constant/constant.dart';
+import 'package:flutter_twitter/features/auth/controller/auth_controller.dart';
 import 'package:flutter_twitter/theme/pallete.dart';
 
-class SignInButton extends StatelessWidget {
+class SignInButton extends ConsumerWidget {
   const SignInButton({super.key});
 
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(authControllerProvider.notifier).signInWithGoogel(context);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () => signInWithGoogle(context, ref),
         icon: Image.asset(
           Constant.googlePath,
           width: 40,
